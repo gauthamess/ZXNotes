@@ -1,0 +1,140 @@
+	\documentclass[11pt, oneside,reqno]{amsart}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.p\mathrm{d}F to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use p\mathrm{d}F, png, jpg, or eps§ with p\mathrm{d}Flatex; use eps in DVI mode
+
+\geometry{
+	a4paper,
+	total={170mm,207mm},
+	left= 20mm,
+	top=25mm,
+	bottom = 30 mm,
+}% TeX will automatically convert eps --> p\mathrm{d}F in p\mathrm{d}Flatex		
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+
+\usepackage{subcaption}
+\usepackage{bbm}
+\usepackage{mathtools}
+\usepackage{xcolor}  
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{array}
+\def\dbar{{\mathchar'26\mkern-12mu d}}
+
+\usepackage{faktor}
+\usepackage{zx-calculus}
+
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3} 
+\makeatletter
+\def\blfootnote{\xdef\@thefnmark{}\@footnotetext}
+\makeatother
+\newcommand{\bd}{\textbf}
+\newcommand{\bb}{\mathbb}
+\newcommand{\mf}{\mathfrak}
+\newcommand{~}{\noindent}
+\newcommand{\Pos}{\text{Pos}}
+\newcommand{\R}{\Rightarrow}
+\newcommand{\h}{\hat{}}
+\newcommand{\ah}{\hat{a}}
+\newcommand{\mh}{\mathcal{H}}
+\newcommand{\ka}{\ket{\alpha}}
+\newcommand{\ba}{\bra{\alpha}}
+\newcommand{\m}{\mathcal}
+\newcommand\Tau{\mathcal{T}}
+\newcommand{\im}{\mathrm{im}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}} % Ordinary derivative
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}} % Partial derivative
+\newcommand{\nder}[3]{\frac{\mathrm{d}^{#1}#2}{\mathrm{d}#3^{#1}}} % Higher-order ordinary derivative
+\newcommand{\npder}[3]{\frac{\partial^{#1}#2}{\partial #3^{#1}}} % Higher-order partial derivative
+\newcommand{\cc}[1]{\mathcal{C}^#1}
+\newcommand{\diff}{\mathrm{d}}
+
+\usepackage{pdfpages}
+
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\vecc}{vec}
+
+
+
+\newcommand{\pcv}[3]{\left( \pder{#1}{#2} \right)_{#3}}
+
+\newcommand{\I}{\implies}
+\newcommand{\quo}{\ensuremath{\mathrel{\mathsf{div}}}}
+\newcommand{\rel}{\ensuremath{\mathbb{R}}}
+\newcommand{\nat}{\ensuremath{\mathbb{N}}}
+\newcommand{\ing}{\ensuremath{\mathbb{Z}}}
+\newcommand{\clx}{\ensuremath{\mathbb{C}}}
+\newcommand{\kel}{\ensuremath{\mathbb{K}}}
+\newcommand{\rand}{\text{ and }}
+\newcommand{\qedd}{&&\text{\qed}}
+\newcommand{\et}[1]{&&\text{(#1)}\\}
+\newcommand{\pbc}{&\text{\emph{(Proof by Contradiction)}}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\mycomment}[1]{}
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+{ \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
+
+
+\setlength{\parindent}{0pt}
+
+
+%SetFonts
+
+%SetFonts
+
+
+\title{
+	ZX Notes }
+\date{Y}
+
+
+\begin{document}
+	\maketitle
+	
+	\includepdf[pages=-]{ideas-gautham.pdf}
+	
+	
+\section{ZX Introduction}
+
+\section{Measurements and MBQC}
+
+\begin{definition}
+	\bd{Pauli strings. } \[ P_n = \{ \bigotimes_{i=1}^n A_i | A_i \in  \}\]
+\end{definition}
+
+\section{Pauli Flow}
+
+
+\section{PDDAG}
+
+
+
+
+\end{document}
