@@ -485,7 +485,7 @@ To be precise, $P_{rest} \equiv P_{abs} \otimes P_{outs}$ can consist of any ope
 	Let $Q,S$ be commuting pauli strings, and let  $S$ be a stabiliser of $\ket{G}$ \footnote{or more generally, of any linear map $C$}. Then,
 	\[ e^{-i \frac{\theta}{2}Q} \ket{G} = e^{-i \frac{\theta}{2}QS} \ket{G}\]
 \end{lemma}
-To compute the extraction strings, we use the rotation lemma and set $Q = Q_v$ and $S = S_v$ -- then, in the product $QS$ we are left with $\mathbbm{1} \otimes P_{outs}$.
+To compute the extraction strings, we use the rotation lemma and set $Q = Q_v$ and $S = S_v$ -- then, in the product $QS$ we are left with $\mathbbm{1} \otimes P_{rest}$.
 
 The only problem that remains is that if $u \in p(v), u \succ v$, and $\lambda(u)$ is planar, then $P^{v \to u}_{rest}$ might not be absorbed by $\lambda(u)$. To resolve this, we process vertices in reverse order of flow (i.e, increasing measurement depth order) and at each step convert the measurement labels into paulis while pushing the rotations to the output.
 
