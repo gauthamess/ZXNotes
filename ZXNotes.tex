@@ -351,7 +351,7 @@
 	We can also take the product of stabilisers indexed (defined) by many vertices. To corrct by applying a local $Z$, we can take the stabiliser of vertices in in its neighbourhood.
 	
 	Generally, we look for a stabiliser of the graph state,
-	\begin{equation}
+	\begin{equation} \label{exstr}
 		S = Q_v \otimes P_{rest}
 	\end{equation}
 	where $Q_v$ is the local correction operator on vertex $v$. This is dependent (only) on the choice of plane and angle. The string of paulis $P_{rest}$ is called an \emph{extraction string}. Simple algebraic manipulation of a chosen stabiliser is the generator for corrections.
@@ -407,7 +407,7 @@
 	\end{definition}
 	Conditions i, ii ensure that correction sets are in the \emph{future}, and iii - v follow from the stabiliser algebra.
 
-We can generalise this by noting that if some measurements are pauli,  $\lambda(u) \in \{X,Y,Z\}$, then $u$ can be in the correcting set of some $v$ in the future $(u \prec v)$ as long as correcting $v$ induces the same pauli $\lambda(u)$ on $u$. This is described as a \emph{free correction in the past}. Note that the $\pm$ sign must still be tracked, but doesn't require tha application of any operator. 
+We can generalise this by noting that if some measurements are pauli,  $\lambda(u) \in \{X,Y,Z\}$, then $u$ can be in the correcting set of some $v$ in the future $(u \prec v)$ as long as correcting $v$ induces the same pauli $\lambda(u)$ on $u$. This is described as a \emph{free correction in the past}. Note that the $\pm$ sign must still be tracked, but doesn't require the application of any operator. 
 
 \begin{definition}
 \bd{(Pauli flow).} \\
@@ -447,6 +447,60 @@ The local operator at some vertex $u \in p(v)$ is,
 where, $1_{x \in A}$ denotes the characteristics function -- 1 if $x \in A$ and 0 if $x \notin A$. 
 
 The third axiom [$\prec.Y$] describes the $(0,0)$ corresponding to  a local $I$ and $(1,1)$ corresponding to a local $Z$ cases. Note that writing $u \notin p(v) \cap \mathrm{odd}(p(v))$ would not allow the trivial identity case.
+
+In Pauli flow, past vertices with pauli measurements are allowed to be in future correcting sets as long as the induced local operator commutes. 
+
+\emph{Focussed flow} requires that this is \emph{necessarily} the case for every correction regardless of ordering. That is, the induced $P_{v \to u} \in \{\mathrm{I},\lambda(u)\}$. Here, 
+\begin{equation}
+	P_{v \to u } := X^a Z^b,\ \ a = {1_{u \in p(v)}}, \ b = {1_{u \in \mathrm{odd}(p(v))}} 
+\end{equation}
+whether $v \prec u$ or $u \prec v$.
+
+\begin{definition} \bd{(focussed pauli flow).} \\
+	a pauli flow $(p,\prec)$ is focussed if for all $u,v \in \bar{O}$ and $u \neq v$,
+	\[ P_{v \to u } \in \{I, \lambda(u)\}\]
+\end{definition}
+There is an amibiguity here with treating non-planar measurements, so we identify measurement planes with the pauli at angle 0.	
+
+A bit more generally,
+\begin{definition} \bd{(focussed  sets)}\label{ff}
+Given a labelled open graph $\Gamma$, a set $\tilde p \subseteq \bar{I}$  is focussed over $S \subseteq \bar{O}$ if,
+
+$\left[FX\right]$ for all $v \in S \cap \tilde p$, $\lambda(v) \in \{XY,X,Y\}$
+
+$\left[FZ\right]$ for all $v \in S \cap \mathrm{odd}(\tilde p)$, $\lambda(v) \in \{XZ,YZ,Y,Z\}$
+
+$\left[FY\right]$ for all $v \in S$, $\lambda(v) = Y \implies (v \in \tilde p \iff v \in \mathrm{odd}(\tilde p))$
+$\tilde p$ is a \emph{focussed set} for $\Gamma$ if it is focussed over $\bar{O}$. A pauli flow $(p,\prec)$ is a \emph{focussed pauli flow} if  for all $v \in \bar{O}$, $p(v)$ is focussed over $\bar{O} \setminus \{v\}$
+\end{definition}
+
+\section{pddag and rewrite rules}	
+
+\subsection{Extraction strings} Recall \ref{exstr}, we want to use focussed pauli flow, write every measurement as a rotation + pauli, then finally push the rotations to just the outputs. This requires identifying a stabiliser $S_v = Q_v \otimes P_{rest}$ for each vertex where $Q_v$ is the local correction on vertex $v$, so orthogonal to $\lambda(v)$.
+
+To be precise, $P_{rest} \equiv P_{abs} \otimes P_{outs}$ can consist of any operations on the outputs, and also local paulis that are absorbed by other vertices \footnote{pauli flow will only guarantee that paulis are absorbed by past vertices, not future} \ref{ff} --  the fact that we can always find such a stabiliser $S_v$ is guaranteed by focussed pauli flow. The following rotation lemma computes the `extraction strings' on the outputs.
+
+\begin{lemma}
+	\bd{(rotation lemma),} \\
+	Let $Q,S$ be commuting pauli strings, and let  $S$ be a stabiliser of $\ket{G}$ \footnote{or more generally, of any linear map $C$}. Then,
+	\[ e^{-i \frac{\theta}{2}Q} \ket{G} = e^{-i \frac{\theta}{2}QS} \ket{G}\]
+\end{lemma}
+To compute the extraction strings, we use the rotation lemma and set $Q = Q_v$ and $S = S_v$ -- then, in the product $QS$ we are left with $\mathbbm{1} \otimes P_{outs}$.
+
+The only problem that remains is that if $u \in p(v), u \succ v$, and $\lambda(u)$ is planar, then $P^{v \to u}_{rest}$ might not be absorbed by $\lambda(u)$. To resolve this, we process vertices in reverse order of flow (i.e, increasing measurement depth order) and at each step convert the measurement labels into paulis while pushing the rotations to the output.
+
+\subsection{PDDAG}
+
+\section{Rewrites on the PDDAG}
+
+i. Pushing cliffords into tableaux
+
+ii. Choice of vertices to identify as pauli to define the flow (binary choice for each pauli label)
+
+iii. local complementation
+
+iv. merging
+ 
 	
 	\newpage
 	\section{References }
