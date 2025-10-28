@@ -538,7 +538,17 @@ An idea is to compute the sets of interest with the following matrix ingredients
 
 2. Matrix of correction sets $P$, where for a fixed vertex $v$, $p(v)$ is the indicator column vector $\in \{0,1\}^V$
 
-3. The product $AP$  will yield the matrix of odd neighbourhoods. [TODO]
+3. The product $AP$ (modulo 2)  will yield the matrix of odd neighbourhoods.
+
+Then finally, 
+
+i. Define $W := P \lor AP$ (entrywise OR sum) 
+
+ii. Extract the rows corresponding to the outputs $O$
+
+iii. Delete the columns corresponding to pauli vertices and obtain the reduced $W_\omega$
+
+iv. $\omega(\Gamma) := \sum_{i,j} {W_{\omega}}_{ij}$
 
 We can also compute the new correction sets after local complementation via $P' = P \oplus AP$ (modulo 2) [TODO and CHECK]
  
@@ -600,19 +610,11 @@ Example -- C.13 from Simmons' paper. Then, corresponding to the vertex ordering 
 	\section{References }
 	
 	\begin{enumerate}
-		\item Pauli and Stabilisers -- \href{https://cs.uwaterloo.ca/~watrous/TQI/TQI.pdf}{Watrous TQI} \label{TQI}\\
+		\item Pauli and Stabiliser  \label{TQI}\\
 		\item MBQC -- \label{MBQC} \\
 		\item PDDAG --
 	\end{enumerate}
 	
-	
-	
-	\section{Pauli Flow}
-	
-	
-	\section{PDDAG}
-	
-	
-	
+
 	
 \end{document}
