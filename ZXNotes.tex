@@ -20,6 +20,7 @@
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{etoolbox}
+\usepackage{relsize}
 
 \usepackage{subcaption}
 \usepackage{bbm}
@@ -56,6 +57,7 @@
 \newcommand{\m}{\mathcal}
 \newcommand\Tau{\mathcal{T}}
 \newcommand{\im}{\mathrm{im}}
+\newcommand{\odd}{\mathrm{odd}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\bra}[1]{\langle#1|}
 \newcommand{\ket}[1]{|#1\rangle}
@@ -119,7 +121,6 @@
 	\maketitle
 	
 	\includepdf[pages=-]{ideas-gautham.pdf}
-	\section{ZX Introduction}
 	
 	\section{Measurements}
 	
@@ -150,7 +151,7 @@
 	This subgroup is isomorphic to $\mathbb{Q}_8 = \{ \pm 1, \pm i, \pm j, \pm k  \}$ via the identification.
 	\begin{equation} i \to iX, j \to iY, k \to iZ\end{equation}
 	
-	\subsection{Properties}
+	\subsection{Properties} [TODO]
 	
 	\subsection{Measurements} \label{meas}
 	In an MBQC we need to specify measurement operations for each non-output. We do this by assigning \emph{measurement planes} for each qubit,
@@ -381,7 +382,7 @@
 		\prod_{u \in g(v)} \left(\prod_{w \in N_G(u)} Z_w\right) X_u &= \left(\prod_{u \in g(v)} \prod_{w \in N_G(u)} Z_w \right) \left(\prod_{u \in g(v)} X_u\right) \\ &= \left(\prod_{u \in \mathrm{odd(g(v))}} Z_u \right)\left(\prod_{u \in g(v)} X_u\right) \\ &= \left(\prod_{u \in \mathrm{odd}(g(v)) \setminus g(v)} Z_u\right) \left(\prod_{u \in g(v) \cap \mathrm{odd}(g(v))} Y_u\right) \left(\prod_{u \in g(v) \setminus \mathrm{odd}(g(v))} X_u\right)
 	\end{align}
 	where, in the second line we use that $Z_w^2 = I$, and that only $Z$ on the odd neighbourhood of $g(v)$ survive.
-	
+ 
 	We then write the expression as a disjoint product -- either,
 	
 	i. $u \in \mathrm{odd}(g(v))$ and $u \notin g(v)$ -- apply $Z$
@@ -419,18 +420,18 @@ $\left[\prec.Z \right]$ for all $u \in \mathrm{odd}(p(v))$, $v \neq u$ and $\lam
  
  $\left[\prec.Y \right]$ for all $v \nprec u$, $v \neq u$ and $\lambda(u) = Y \implies u \notin p(v) \triangle \mathrm{odd}(p(v))$
  
- $\left[\lambda.XY \right]$ $\lambda(u) = XY \implies v \in \mathrm{odd}(p(v))$ and $v \notin p(v)$ 
+ $\left[\lambda.XY \right]$ $\lambda(v) = XY \implies v \in \mathrm{odd}(p(v))$ and $v \notin p(v)$ 
  
- $\left[\lambda.XZ \right]$ $\lambda(u) = XZ \implies v \in p(v)$ and $v \in \mathrm{odd}(p(v))$ 
+ $\left[\lambda.XZ \right]$ $\lambda(v) = XZ \implies v \in p(v)$ and $v \in \mathrm{odd}(p(v))$ 
   
-   $\left[\lambda.YZ \right]$ $\lambda(u) = YZ \implies v \in p(v)$ and  $v \notin \mathrm{odd}(p(v))$  
+   $\left[\lambda.YZ \right]$ $\lambda(v) = YZ \implies v \in p(v)$ and  $v \notin \mathrm{odd}(p(v))$  
    
-    $\left[\lambda.X \right]$ $\lambda(u) = X \implies v \in \mathrm{odd}(p(v))$ 
+    $\left[\lambda.X \right]$ $\lambda(v) = X \implies v \in \mathrm{odd}(p(v))$ 
     
-     $\left[\lambda.Z \right]$ $\lambda(u) = Z \implies v \in p(v)$ 
+     $\left[\lambda.Z \right]$ $\lambda(v) = Z \implies v \in p(v)$ 
      
-      $\left[\lambda.Y \right]$ $\lambda(u) = Y \implies v \in p(v) \triangle \mathrm{odd}(p(v))$
-      
+      $\left[\lambda.Y \right]$ $\lambda(v) = Y \implies v \in p(v) \triangle \mathrm{odd}(p(v))$
+
       where, $\triangle$ denotes the symmetric difference of sets. 
 \end{definition}
 
@@ -521,11 +522,11 @@ Then, our problem reduces to applying local complementation such that,
 \begin{equation}
 	\underbrace{\sum_{v \in \bar{O}}|\left(p'(v) \cap \mathrm{odd}(p'(v))\right) \cap O|}_{\omega(\Gamma')} \leq  \underbrace{\sum_{v \in \bar{O}}|\left( p(v)) \cap \mathrm{odd}(p(v) \right) \cap O|}_{\omega(\Gamma)}
 \end{equation}
-Concretely, local complementation updates all correction sets (and thusly odd neighbourhoods) according to \emph{Lemma D.14} from Simmons' paper. For all $u \in \bar{O}$, local complementation about a vertex $v \in \bar{O}$ yields,
+Concretely, local complementation updates all correction sets (and thusly odd neighbourhoods) according to \emph{Lemma D.14} from Simmons' paper. For all $v \in \bar{O}$, local complementation about a vertex $u \in \bar{O}$ yields,
 \begin{equation}
-	p'(u) := \begin{cases}
-		p(u) \triangle \{v\} & v \in \mathrm{odd}(p(v)) \\
-		p(u) & v \notin \mathrm{odd}(p(v))
+	p'(v) := \begin{cases}
+		p(v) \triangle \{u\} & v \in \mathrm{odd}(p(v)) \\
+		p(v) & u \notin \mathrm{odd}(p(v))
 	\end{cases}
 \end{equation}
  Note that this is the new pauli flow (not focussed!). The focussed condition is a bit more complicated to account for various cases [\emph{Lemma D.15}].
@@ -552,69 +553,302 @@ iv. $\omega(\Gamma) := \sum_{i,j} {W_{\omega}}_{ij}$
 
 We can also compute the new correction sets after local complementation via $P' = P \oplus AP$ (modulo 2) [TODO and CHECK]
  
-\newpage
-
-\section{[Incorrect (ignore)]}
-
-Let $\Gamma$ be a measurement pattern with focussed pauli flow $(p,\prec)$ and $v \in \bar{O}$ such that $\lambda(v) \notin \{X,Y,Z\}$ (appears in the PDDAG). Define the following sets of vertices, \[A(v) := \{p(v) \cup \mathrm{odd}(p(v)) \setminus \{v\}\}\]
-and,
-\[B(v) :=  \{u \in A(v) | u \notin O \rand u \succ v \text{ or } \lambda(u) \in \{X,Y,Z \}\]
-
-\begin{definition}
-	The \bd{pauli-weight} of vertex $v$ is given by,
-	\[ \omega(v) := |A(v)| - |B(v)| \]
-	The \bd{pauli-weight} of the pattern is then,
-	\[ \omega(\Gamma) := \sum_{ \substack{v \in V \\ \lambda(v) \notin \{X,Y,Z\}}} \omega(v)\]
-\end{definition}
-
  
-This follows from the extraction procedure. First, we obtain a pauli for each vertex in $A(v)$, then both the future vertices except outputs, and pauli vertices in $A(v)$ are absorbed. Also, the pauli for vertex $v$ itself is absorbed by its rotation. Note that $B(v) \subseteq A(v)$ [probably a strict subset but why?].
+ \section{Local Complementation}
+ 
+ We want to come up with some sort of strategy for how to reduce pauli-weight by applying Local complementation on the graph. We will try to do this by obtaining some analytic expression for pauli-weight after LC based on Appendix D from the paper.
+ 
+First, we demonstrate that it is only refocussing that changes the pauli-weight. The updated correction sets after LC on the graph (to obey Pauli flow) leaves the weights unchanged, but the focussing can change the weights.
 
-It also follows that $0 \leq \omega(v) \leq |O|$.
 
-Another useful way to calculate weight could be as,
-\begin{equation}
-	\omega(\Gamma) = \sum_{o_i \in O} c(o_i)
-\end{equation}
-where, $c(o_i)$ counts the number of vertices that contribute a pauli to output $o_i$.
+
+We can show that pauli-weight is unchanged until focussing, following Lemma D.14. In the raw LC update, only a single vertex is toggled (or not) in the new correction set. So the odd neighbourhood is straightforward to compute.  		
+
+Some identities we will use:
+\begin{proposition} (Linearity of $\mathrm{odd}$)
+	\[ \mathrm{odd}(A \triangle B) = \mathrm{odd}(A) \triangle \mathrm{odd}(B)\]
+\end{proposition}
+From D.13,
+\begin{proposition}
+	\[ \mathrm{odd}_{G\star u}(A) = \begin{cases}
+		\mathrm{odd}_G(A) \triangle (N_G(u) \cap A) & u \notin \mathrm{odd}_G(A) \\
+			\mathrm{odd}_G(A) \triangle (N_G(u) \setminus A)& u \in \mathrm{odd}_GA)
+	\end{cases}\]
+\end{proposition}
+Using this we want to compute either $\mathrm{odd}_{G\star u}(p(v) \setminus w)$ or $\mathrm{odd}_{G\star u}(p(v) \cup w)$.
+
+Also, since LC is an involution -- $(G \star u) \star u = G$ this makes it sufficient to show one direction.
+\begin{proposition} \label{invo}
+	Let $X$ be a set and $A: X \to \mathcal{P}(X)$ be an assignment. Let $f$ be an involution on $X$ ($f(f(x)) = x$ for all $x \in X$).  If for all $x \in X$, $A(x) \subseteq A(f(x))$, then, $A(x) = A(f(x))$ for all $x \in X$.
 	
+	In our case, the involution is defined as follows, for any $u \in V$ we have the involution,
+	\[ f_u(G, p(v)) = (G \star u, p'(v))\]
+	This is an involution because $\star^2 = \mathrm{id}$ and $((p(v) \triangle u) \triangle u) = p(v)$.
+\end{proposition}
 
-\subsection{matrix representation}
 
-Let $V$ be the set of vertices of a measurement pattern $\Gamma'$ and $V' \subset V$ be the set of non-output, non-pauli vertices. We can construct a $|V'| \times |V'|$ matrix $M$ as follows,
-\begin{equation}
-	M_{v,u} = \begin{cases}
-		1 & u \in A(v) \rand u \notin B(v)\\ 
-		0 & u \in A(v) \rand u \in B(v)\\
-	\end{cases}
-\end{equation}
 
-After choosing (any) ordering of $V'$. So, $\sum_{u \in V'} M_{v,u} = \omega(v)$ and $\sum_{u,v \in V'} M_{v,u} = \omega(\Gamma)$.
+\begin{theorem}
+Let $(\Gamma,G,\alpha)$ be a pattern and after LC at $u \in \bar{O}$, $(\Gamma', G \star u, \alpha)$ be the updated pattern. Then, 
+\[ A(v) := p(v) \cup \mathrm{odd}_G(p(v)) = p'(v) \cup \mathrm{odd}_G(p(v)) =: A'(v)\]
+where,
+\[p'(v) = \begin{cases}
+	p(v) \triangle \{u\} & u \in \mathrm{odd}_G(p(v))\\
+	p(v) & u \notin  \mathrm{odd}_G(p(v))
+\end{cases}\]
+\end{theorem}
+\begin{proof} (by cases). We only need to consider $v \in \bar{O}$ such that $u \notin \mathrm{odd}_G(p(v))$. Let $w \in V$ be arbitrary,
+	
+	\underline{case 1. $w = u$}
+	
+	case (i): $u \notin \mathrm{odd}_G(p(v))$. So we have $p(v) = p'(v)$. 
+	
+	Let $u \in A(v) \implies u \in p(v) \implies u \in p'(v) \subseteq A'(v)$.
+	
+	Let $u \in A'(v)$. From D.13,
+	\[\odd_{G \star u}(p(v)) = \odd_G(p(v)) \triangle (N_G(u)) \cap p(v)\]
+	But $u$ cannot be in the RHS, so we must have that $u \in p'(v) \implies u \in p(v) \subseteq A(v)$.
+	
+	case (ii): $u \in \odd_G(p(v))$. So $p(v) \triangle p'(v) = \{u\}$. Let $u \in A(v)$.
 
-THIS IS WRONG!!! but might have stumbled on a necessary condition $M=0$ for focussed pauli flow...wonder what would make it sufficient.
+	subcase(a). $u \in p(v) \implies p'(v) = p(v) \setminus \{u\}$. So,
+	\[ \odd_{G \star u} (p'(v)) = \odd_{G \star u}(p(v)) \triangle odd_{G \star u}(\{u\}) \]
+	But since $u \in \odd_G(p(v))$, 
+	\[\odd_{G \star u} (p(v)) = \odd_G(p(v)) \triangle (N_G(u) \setminus p(v))\]
+	and $\odd_{G \star u}(\{u\}) = N_{G \star u}(\{u\}) = N_G(\{u\})$.
+	
+	Putting it together with associativity of $\triangle$,
+	\[\odd_{G \star u}(p'(v)) = \odd_G(p(v)) \triangle (N_G(u) \cap p(v))\]
+	So, $u \in \odd_{G \star u}(p'(v)) \subseteq A'(v)$.
+	
+	subcase(b). $u \notin p(v) \implies u \in p'(v) \subseteq A'(v)$.
+	
+	The converse, to show that $u \in A'(v) \implies u \in A(v)$ follows from the same arguments or \ref{invo}.
+	
+	\underline{case 2. $w \neq u$ and $w \notin N_G(u)$}
+	
+	Local complementation does not change the adjacency of $w$, so, $N_{G \star u}(w) = N_G(w)$. If $w \in p(v)$ then $w \in p'(v)$ and we are done. Finally,
+	\[ \odd_{G \star u}(p(v)) = \odd_{G}(p(v)) \triangle (N_G(u) \setminus \{u\}) \]
+	So $w \in \odd_{G \star u}(p(v))$ if $w \in \odd_G(p(v))$
+	
+  	\underline{case 3. $w \neq u$ and $w \in N_G(u)$}
+  	
+  	Let us assume that $w \in A(v)$.
+  	
+  	case (i): $u \in odd_G(p(v))$.
+  	
+  	Here we repeat the calculation from 1. case (ii) (using D.13 and linearity, associativity of odd),
+  	\[\odd_{G \star u}(p'(v)) = \odd_G(p(v)) \triangle (N_G(u) \cap p(v))\]
+	So, $w \in \odd_G(p(v)) \implies w \in \odd_{G \star u}(p'(v))$
+	
+	case (ii): $u \notin \odd_G(p(v))$
+	
+	Then, $w \in p(v) \implies w \in p'(v)$ from \ref{invo}.
+	
+	Therefore, we have shown that $w \in A(v) \implies w \in A'(v)$ and from \ref{invo} the other direction follows. Before focussing the flow, local complementation leaves the weight invariant.
+\end{proof}
+The change in pauli-weight comes purely from taking the symmetric set diference again with the correction sets for the following candidates,
+\[W(v) = \bigg \{ w \in A(v) \cap (N_G(u) \cup \{u\}) \bigg | w \succ v \rand \begin{cases}
+	\text{if } w = u  \text{ then } \lambda(u) \notin \{X,Y,Z\} \\ \text{if } w \in N_G(u) \text{ then } \lambda(w) = XY
+\end{cases} \bigg \} \]
+So, we should choose vertices $u$ for LC such that they are not planar measurements, or their neighbours are $XY$ measurements.
+
+We can perform a similar computation as above for the updated weight after focussing.
+
+To distinguish, let us denote the update correction sets before focussing (obeying pauli flow) as $\tilde p$. The pauli weight for a vertex $v$ after local complementation about some vertex $u$ is, 
+\[ p'(v) \cup \odd p'(v) = \left(\tilde p(v) \cup \odd (\tilde p(v)) \right) \triangle \underset{w \in W(v)}{\mathlarger{\mathlarger{\triangle}}} \left(p'(w) \cup \odd(p'(w)) \right)  \]
+\[ p'(v) \cup \odd p'(v) = \left( \tilde p(v) \triangle \underset{w \in W(v)}{\mathlarger{\mathlarger{\triangle}}} p'(w) \right) \cup \left(  \odd(\tilde p(v)) \triangle \underset{w \in W(v)}{\mathlarger{\mathlarger{\triangle}}} \odd(p'(w)) \right) \]
+intersected with $O$.
+
+Note that this is not simply $A'(v) = \tilde A(v) \triangle_w A'(w)$
+
+$w$ must initially satisfy two properties:
+
+(i) $w \succ v$
+
+(ii) $w \in N_G(u) \text{ or } w = u$
+
+An element vanishes on the RHS if it appears a total even number of times in the $|W(v)+1|$ sets.
+
+To summarise, to reduce $\omega(v)$, we need to find a suitable LC vertex $u$. For this to have any effect on the weight, we require:
+
+(i) $u \in A(v)$
+
+Then, consider vertices either $w \in N_G(u)$ or $w = u$. We must take the difference of these sets for which $w \succ v$, either,
+
+(ii) $w \in N_G(u) \implies \lambda(w) = XY$
+
+(iii) $w = u \implies \lambda(u) \notin \{X,Y,Z\}$
+
+So, by looking at different $\lambda(u)$ [TODO]
+
+\subsection{Calculation of correction sets via chains} We seek to derive a non-recursive method (closed form) of computing correction sets after local complementation.
+ 
+As a simplifying assumption, let us ignore the LC vertex $u$ itself. Consider the candidate set $W$ for a vertex $x$. This is the future subset of $N_G(u)$ in $A(x)$ with $XY$ labels.
+
+Working with matrices over $\mathbb{F}_2$, the $\triangle$ operation is simply addition modulo 2. The familiar update rule is,
+\[ p'(x) = p(x) + \bigoplus_{w \in W} p'(w) \]
+If the vertices in $W$ were totally ordered: $0 \succ 1 \succ 2 \succ \ldots \succ n$ then,
+\[p'(0) = p(0), p'(1) = p(1) + p(0), p'(2) = p(2) + p(1) + p(0) + p(0) = p(2) + p(1)\]
+The general pattern is $p'(k) = p(k) + p(k-1)$.
+
+When there is no total ordering it is a bit more complicated. For example in a 'diamond',
+\[ x \prec a \prec y \rand x \prec b \prec y\]
+with $a,b,y \in W$.
+
+Calculating similarly, we will find that $p'(x) = p(x) + p(a) + p(b) + p(y)$.
+
+The general rule is as follows.
+\begin{proposition}
+	For a vertex $x \in \bar{O}$ and $y \in W$, $p'(x)$ will include $p(y)$ in the sum iff there are an odd number of strictly $\prec$-increasing sequences starting at $x$ and ending at $y$. 
+	\begin{equation}\label{chains}
+p'(x) = p(x) \oplus \bigoplus_{y \in W} \mathcal{C}(x,y) p(y)	\end{equation}
+	where, $\mathcal{C}(x,y) \in \{0,1\}$ is the number of strictly $\prec$-increasing sequences from $x$ to $y$ modulo 2.
+\end{proposition}
+
+(i) Total order: Number of sequences between any two non-adjacent vertices is a power of 2. Which is why only the adjacent vertex appers as $p'(k) = p(k) + p(k-1)$.
+
+(ii) Diamond: Sequences from $x$ to $y$ are three in total: $x \prec a \prec y$, $x \prec b \prec y$, $x \prec y$.
+
+General strategy to compute the new correction set for $x \in \bar{O}$ after LC:
+
+(i) Identify the candidate set $W_x$ and arrange it as a poset.
+
+(ii) For each vertex $w \in W_x$, calculate the number of $\prec$-increasing paths from $x$ to $w$ and keep track of the parity. Then compute $p'(x)$ as in \ref{chains}.
+
+\subsection{Partial $\triangle$-Invariance of correction sets}
+
+Consider a single local complementation,
+\[ 0 \xrightarrow{LC_u}1\]
+With $G \mapsto G \star u, \ p_0 \mapsto p_1$. If $|I| = |O|$, this is an involution.
+
+Note that:
+
+(i) $LC$ does not change $\prec$ on $G$.
+
+(ii) For any $A_0 \subset N_G(u)$, $A_0 = A_1$ because $N_{G \star u}(u) = N_G(u)$
+
+So, for any $x \in G$,
+\[p_1(x) = p_0(x) \triangle_{w \in W_0} p_1(w)\]
+where, $W_0 \subset N_G(u)$ with $\lambda(w) = XY$, $w \succ x$ and $w \in p_0(x) \cup \odd(p_0(x))$
+
+Applying LC at $u$ again we restore the original pattern,
+\[p_0(x) = p_1(x) \triangle_{w \in W_1} p_0(w)\]
+here, $W_1 \subset N_G(u)$ with $\lambda(w) = XY$, $w \succ x$ and $w \in p_1(x) \cup \odd(p_1(x))$
+
+Taking the symmetric difference of both expressions,
+\[p_0(x) \triangle p_1(x) = p_0(x) \triangle p_1(x) \triangle_{w \in W_1} p_0(w) \triangle_{w \in W_0} p_1(w)\]
+Therefore,
+\[\triangle_{w \in W_1} p_0(w) = \triangle_{w \in W_0} p_1(w)\]
+
+Again, the $w \in A(x)$ filter for the candidate set complicates the expression.
+
+
+\newpage
+\section{Pivot}
+
+We want to show that when $|I| = |O|$, a pivot leaves extraction strings invariant.
+
+\emph{\bd{Conjecture. } Let $\Gamma = (G, p, \prec)$ be a pattern with focussed pauli flow and $|I| = |O|$. Then, after a pivot on any edge $(u,v)$, $u,v \in \bar{I}$, the updated pattern $\Gamma' = (G',p',\prec)$ leaves the extraction strings invariant. That is, for all $x \in G$,
+\[ p(x) \cap O = p'(x) \cap O \rand \odd(p(x)) \cap O = \odd(p'(x)) \cap O\]}
+
+\vspace{0.3cm}
 
 \begin{center}
-	I think: pf + $M=0$ $\iff$ fpf
+\emph{Below is a collection of ideas/strategies/attempts so far.}
 \end{center}
 
+\subsection{Observations}
+Consider the pivot about an edge $(u,v)$ We are interested in the effect of this operation on $x \in \bar{O}$.
 
-[\emph{Maybe a more revealing/sensible ordering of $V'$ based on $\prec$?}]
+A pivot involves a sequence of 3 local complementations, so there are 4 total states of the graph/measurement pattern:
+\[G^0 \xlongrightarrow{LC_u} G^1 \xlongrightarrow{LC_v} G^2 \xlongrightarrow{LC_u} G^3 \]
+Similarly, the correction set of $p(x)$ changes as,
+\[p^0(x) \xlongrightarrow{LC_u} p^1(x) \xlongrightarrow{LC_v}  p^2(x) \xlongrightarrow{LC_u}  p^3(x) \]
+Our goal is to show that $p^0(x) \cap O = p^3(x) \cap O$.
 
-Then, we can look at how local complementation changes $M$.
-
-Example -- C.13 from Simmons' paper. Then, corresponding to the vertex ordering (basis) $\{i,a,b,c\}$
-
-
-
-	\newpage
-	\section{References }
+Some observations.
+\begin{enumerate}
+	\item Pivot is symmetric in $(u,v)$. i.e, $G \wedge uv = G \wedge vu$. 
 	
+	\item Excluding the LC vertex $u$, the label updates for other vertices leave the candidates invariant. That is, the vertex sets $\{w | \lambda(w) = XY\}$ and $\{w | \lambda(w) \notin \{X,Y,Z\}\}$ are invariant.
+	
+	\emph{exceptional case: If we consider a pivot $G \wedge uv$, then if $\lambda_0(v) = YZ$, it will contribute since $YZ \mapsto XZ \mapsto XY$.}
+	
+	\item LC (and hence pivot) leaves $\prec$ invariant. 
+	
+	\item
+	Define $A = N_G(u) \setminus \{v\}, B = N_G(v) \setminus \{u\}$, and $A_{XY}, B_{XY}$ be corresponding subsets with $\lambda = XY$. Then, we have a sequence of three corresponding correction sets for each update, $W_0 \to W_1 \to W_2$.
+	
+	It follows from tracking the pivot that, $W_0 = A_{XY}, W_1 = B_{XY} \triangle A_{XY}$ and $W_2 = B_{XY} \triangle A_{XY} \triangle A_{XY} = B_{XY}$. Notice that $W_1 = W_0 \triangle W_2$. This is a naturally symmetric characterisation of the neighbourhood sets.
+	
+	\emph{Issue: This does not account for the fact that there is another filter, namely that we must select $w \in W_i$ only if they belong in $p_i(x) U \odd(p_i(x))$. That breaks the above identity.}
+	
+	\item When $|I| \neq |O|$, I notice that the conjecture breaks specifically for vertices $x \in I$. The proof must rely on the fact that $|I| = |O|$. Collecting relevant results from the paper:
 	\begin{enumerate}
-		\item Pauli and Stabiliser  \label{TQI}\\
-		\item MBQC -- \label{MBQC} \\
-		\item PDDAG --
+		\item \emph{Lemma B.2,B.7: }$\triangle$ of focussed sets is focussed. When $|I| = |O|$ the focussed set over $\bar{O} \setminus\{v\}$ is unique. 
+		
+		\item \emph{Lemma B.9: }$2^{|O| - |I|}$ distinct focussed sets. This might be what is breaking the conjecture on the inputs.
 	\end{enumerate}
 	
+	\item \emph{Definition 4.3: }because $p(x)$ is focussed over the pivot neighbourhood, then from the definition of a focussed set it follows that $\lambda(w) = XY$ and $w \in p(x) \cup \odd(p(x)) \implies w \in p(x)$. So it is sufficient to filter candidates by intersecting with $p(x)$.
+	
+	\item The proof must also involve taking an intersection with the outputs. For this, it seems most natural/direct to work with extraction strings and update rules directly.
+	
+	\item \emph{Lemma B.7, Duncan: }Tells us how to compute $\odd(p_3(x))$ in terms of membership conditions of $u,v$ in $\odd_{G_0}(p_0(x))$. Involves toggling $\triangle$ with $N_{G_0}(u)$ and $N_{G_0}(v)$.
+	\end{enumerate}
+	
+	\subsection{Proof and Simplification Strategies }
+	\begin{enumerate}
+		\item Strong induction in reverse $\prec$-order seems powerful.
+		
+		\item Equalities among $\triangle_{w \in W_i} p_i(w_i)$ for different $i$ can be obtained by equating $\wedge uv = \wedge vu$ and the fact that LC is an involution.
+		
+			\item Deriving some combinatorial results to use with the chains approach \ref{chains}.
+	\end{enumerate}
 
+\newpage
+
+
+
+\subsection{Matrix Framework for Pivot Invariance}
+
+Let $(\Gamma,\lambda)$ be a measurement pattern with a focussed pauli flow $(p, \prec)$. Let $x \in \bar{O}$ and consider a pivot across an edge $(u,v)$ such that $u,v$ do not appear as candidates.
+
+Define $A = N_G(u) \setminus \{v\}, B = N_G(v) \setminus \{u\}$, and $A_{XY}, B_{XY}$ be corresponding candidate subsets with $\lambda = XY$. Then, we have a sequence of states of the graph $G_0 \to G_1 \to G_2 \to G_3$ with three corresponding correction (candidate) sets for each update, $W_0 \to W_1 \to W_2$.
+
+It follows from the pivot that, $W_0 = A_{XY}, W_1 = B_{XY} \triangle A_{XY}$ and $W_2 = B_{XY} \triangle A_{XY} \triangle A_{XY} = B_{XY}$. Notice that $W_1 = W_0 \triangle W_2$.
+				
+For any set $W \subseteq \bar{O}$, let use define a matrix $T_W$ over $\mathbb{F}_2$,
+\[T_W(x,y) =  \begin{cases}
+	C(x,y) & \text{ if } y \in W \\
+	0 & \text{ otherwise}
+\end{cases}\]
+Here, $C(x,y)$ is the number of chains, i.e, the number of strictly $\prec$-increasing sequences from $x$ to $y$. 
+\[p'(x) = p(x) \oplus \bigoplus_{y \in W} C(x,y)p(y)\]
+This detects whether $p(y)$ appears in the $\triangle$-update for $p(x)$.
+
+Now, we can compute how the correction sets for any vertex $x$ transform, $p_0 \to p_1 \to p_2 \to p_3$,
+\[p_1 = (I + T_{W_0})p_0, \ p_2 = (I + T_{W_1})p_1, \ p_3 = (I + T_{W_2})p_2  \]
+So,
+\[p_3 = (I+T_{W_2})(I+T_{W_1})(I+T_{W_0})p_0 =: Pp_0\]
+Now substituting $T_{W_1} = T_{W_0}+T_{W_2}$ and simplifying, we get,
+\[ P = I + T_{W_0}^2 + T_{W_2}^2 + T_{W_2}T_{W_0} + T_{W_2}^2 T_{W_0} + T_{W_2}T_{W_0}^2 =: I + D  \]
+then, \[p_3(x) = p_0(x) \bigoplus_{y \in \bar{O}} D(y)p(y)\]
+The correction set is invariant, $p_3 = p_0$ if all the quadratic terms disappear. Also, from symmetry $u \wedge v = v \wedge u$ so,
+\[ T_{W_2}T_{W_0} + T_{W_2}^2 T_{W_0} + T_{W_2}T_{W_0}^2 = T_{W_0}T_{W_2} + T_{W_0}^2 T_{W_2} + T_{W_0}T_{W_2}^2\]
+
+Let us now compute $\mathrm{Odd}_{G \wedge uv}(p_3(x))$ by applying \emph{Lemma D.13} recursively,
+\[ \mathrm{odd}_{G\star u}(S) = \begin{cases}
+	\mathrm{odd}_G(S) \triangle (N_G(u) \cap  S) & u \notin \mathrm{odd}_G(S) \\
+	\mathrm{odd}_G(S) \triangle (N_G(u) \setminus S)& u \in \mathrm{odd}_GS)
+\end{cases}\]
+
+\bd{Making the simplifying assumption that $u,v$ never appear in $\mathrm{odd}_G(p_3(x))$},
+\[ \mathrm{odd}_{G \wedge uv}(p_3(x)) = \mathrm{odd}_G(p_3(x)) \triangle (N_{G}(u) \setminus S) \triangle (N_{G \star u}(v) \setminus S)  \triangle (N_{G \star u \star v}(u) \setminus S)  \]
+This simplifies because we have $A, A \triangle B, B$ to,
+\[ \mathrm{odd}_{G \wedge uv}(p_3(x)) = \mathrm{odd}_G(p_3(x))\]
+
+Use Lemma B.7 from Duncan for other cases.
 	
 \end{document}
